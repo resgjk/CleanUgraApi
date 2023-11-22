@@ -1,12 +1,16 @@
 from pydantic import BaseModel
 
 
-class PointCreate(BaseModel):
+class Point(BaseModel):
+    id: int
     title: str
     coord_x: str
     coord_y: str
     time: str
-    addres: str
+    address: str
     description: str
     phone_number: str
+    vk_ref: str
+    tg_ref: str
+    img: str
     category: int

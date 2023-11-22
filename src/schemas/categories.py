@@ -1,10 +1,12 @@
 from pydantic import BaseModel
 
-class CategoryCreate(BaseModel):
+class CategoryImage(BaseModel):
+    id: int
+    img: str
+
+class Category(CategoryImage):
     title: str
     rules: str
     not_take: str
 
-class CategoryImage(BaseModel):
-    id: int
-    img: str
+

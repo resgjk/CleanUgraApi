@@ -16,6 +16,7 @@ class ReceptionPointModel(Base):
     phone_number: Mapped[str] = mapped_column(nullable=False)
     vk_ref: Mapped[str] = mapped_column(nullable=False)
     tg_ref: Mapped[str] = mapped_column(nullable=False)
+    img: Mapped[str] = mapped_column(nullable=True)
     
     category: Mapped[int] = mapped_column(ForeignKey('categories.id'), nullable=False)
     

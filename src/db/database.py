@@ -3,7 +3,7 @@ from sqlalchemy.orm import DeclarativeBase
 
 
 
-url_base = 'sqlite+aiosqlite:///database.db'
+url_base = 'sqlite+aiosqlite:///src/database.db'
 
 async_engine = create_async_engine(url_base, echo=True)
 
