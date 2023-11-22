@@ -1,5 +1,12 @@
 from pydantic import BaseModel
 
+class ShortPoint(BaseModel):
+    title: str
+    coord_x: str
+    coord_y: str
+    category: int
+    img: str
+
 
 class Point(BaseModel):
     id: int

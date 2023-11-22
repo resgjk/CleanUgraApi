@@ -5,7 +5,7 @@ from db.database import async_session_maker
 from models.categories import CategoryModel
 from models.reception import ReceptionPointModel
 from schemas.categories import *
-from schemas.reception import Point
+from schemas.reception import Point, ShortPoint
 
 
 router = APIRouter(prefix='/api/v1')
@@ -17,10 +17,10 @@ async def get_categories():
         res = await session.execute(categories)
         return {'categories': res.scalars().all()}
 
-@router.get('/reception/categories/{title}')
+@router.get('/reception/categories/{title}', response_model=list[ShortPoint])
 async def get_reception_by_title(title: str):
     async with async_session_maker() as session:
         query = select(
             ReceptionPointModel).where(ReceptionPointModel.category == select(CategoryModel.id).where(CategoryModel.title == title))
         points = await session.execute(query)
-        return {'receptions': points.scalars().all()}
+        return points.scalars().all()
