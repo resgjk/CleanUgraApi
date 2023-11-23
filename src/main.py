@@ -12,14 +12,4 @@ app = FastAPI(
     title='MyAPI'
 )
 
-@app.get('/')
-def hello():
-    return 'Hello everybody'
-
-def main():
-    app.include_router(router)
-    uvicorn.run(app=app, host='127.0.0.1', port=8001)
-
-
-if __name__ == '__main__':
-    main()
+app.include_router(router=router)
