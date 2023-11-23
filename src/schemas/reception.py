@@ -1,5 +1,10 @@
 from pydantic import BaseModel
 
+
+class PointImage(BaseModel):
+    id: int
+    img: str
+    
 class ShortPoint(BaseModel):
     title: str
     coord_x: str
@@ -8,16 +13,12 @@ class ShortPoint(BaseModel):
     img: str
 
 
-class Point(BaseModel):
+class Point(ShortPoint):
     id: int
-    title: str
-    coord_x: str
-    coord_y: str
     time: str
     address: str
     description: str
     phone_number: str
     vk_ref: str
     tg_ref: str
-    img: str
     category: int
