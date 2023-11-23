@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from models.categories import CategoryModel
-from models.reception import ReceptionPointModel
-from routers.router import router
+from src.models.categories import CategoryModel
+from src.models.reception import ReceptionPointModel
+from src.routers.router import router
 import uvicorn
 
 #import asyncio

@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import ForeignKey
-from db.database import Base
+from src.db.database import Base
 
 
 class ReceptionPointModel(Base):

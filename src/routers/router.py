@@ -1,11 +1,11 @@
 from sqlalchemy import insert, delete, select, and_
 from fastapi import APIRouter
 
-from db.database import async_session_maker
-from models.categories import CategoryModel
-from models.reception import ReceptionPointModel
-from schemas.categories import *
-from schemas.reception import Point, ShortPoint
+from src.db.database import async_session_maker
+from src.models.categories import CategoryModel
+from src.models.reception import ReceptionPointModel
+from src.schemas.categories import *
+from src.schemas.reception import Point, ShortPoint
 
 
 router = APIRouter(prefix='/api/v1')
