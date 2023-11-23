@@ -25,7 +25,7 @@ async def get_receptions_by_category_title(title: str):
                 ReceptionPointModel.category == select(
                     CategoryModel.id).where(CategoryModel.title == title))
         points = await session.execute(query)
-        return {'receptions': points.scalars().all()}
+        return points.scalars().all()
 
 @router.get('/reception/{title}')
 async def get_reception_by_title(title: str):
