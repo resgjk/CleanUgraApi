@@ -10,7 +10,7 @@ class ShortPoint(BaseModel):
     coord_x: str
     coord_y: str
     category: int
-    img: str
+    img: str | None = None
 
 
 class Point(ShortPoint):

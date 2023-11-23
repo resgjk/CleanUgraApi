@@ -7,6 +7,4 @@ class CategoryImage(BaseModel):
 class Category(CategoryImage):
     title: str
     rules: str
-    not_take: str
-
-
+    not_take: str | None = None
