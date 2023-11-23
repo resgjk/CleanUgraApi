@@ -1,9 +1,10 @@
-from sqlalchemy import insert, delete, select, and_
+from sqlalchemy import insert, delete, select, and_, desc
 from fastapi import APIRouter
 
 from src.db.database import async_session_maker
 from src.models.categories import CategoryModel
 from src.models.reception import ReceptionPointModel
+from src.models.news import NewsModel
 from src.schemas.categories import *
 from src.schemas.reception import Point, ShortPoint
 
@@ -35,3 +36,10 @@ async def get_reception_by_title(title: str):
         )
         point = await session.execute(query)
         return {'reception': point.scalar_one()}
+
+@router.get('/news')
+async def get_all_news():
+    async with async_session_maker() as session:
+        query = select(NewsModel).order_by(desc(NewsModel.id))
+        news = await session.execute(query)
+        return {'news': news.scalars().all()}
