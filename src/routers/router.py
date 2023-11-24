@@ -30,7 +30,7 @@ async def get_receptions_by_category_title(title: str):
         return points.scalars().all()
 
 @router.get('/reception/{title}')
-async def get_reception_by_title(title: str) -> List[ShortPoint]:
+async def get_reception_by_title(title: str):
     async with async_session_maker() as session:
         query = select(ReceptionPointModel).where(
             ReceptionPointModel.title == title
