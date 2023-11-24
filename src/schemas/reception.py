@@ -1,10 +1,6 @@
 from pydantic import BaseModel
 
 
-class PointImage(BaseModel):
-    id: int
-    img: str
-    
 class ShortPoint(BaseModel):
     title: str
     coord_x: str

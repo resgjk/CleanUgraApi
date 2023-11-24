@@ -1,4 +1,4 @@
-from sqlalchemy import insert, delete, select, and_, desc
+from sqlalchemy import select, desc
 from fastapi import APIRouter
 from typing import List
 
@@ -6,8 +6,9 @@ from src.db.database import async_session_maker
 from src.models.categories import CategoryModel
 from src.models.reception import ReceptionPointModel
 from src.models.news import NewsModel
-from src.schemas.categories import *
-from src.schemas.reception import Point, ShortPoint
+from src.schemas.reception import ShortPoint
+from src.schemas.message import ReceiveMsg
+from src.utils.change_message import change_message
 
 
 router = APIRouter(prefix='/api/v1')
@@ -20,7 +21,7 @@ async def get_categories():
         return {'categories': res.scalars().all()}
 
 @router.get('/reception/categories/{title}')
-async def get_receptions_by_category_title(title: str):
+async def get_receptions_by_category_title(title: str) -> List[ShortPoint]:
     async with async_session_maker() as session:
         query = select(
             ReceptionPointModel).where(
@@ -44,3 +45,10 @@ async def get_all_news():
         query = select(NewsModel).order_by(desc(NewsModel.id))
         news = await session.execute(query)
         return {'news': news.scalars().all()}
+
+@router.post('/message/')
+async def send_msg(msg: ReceiveMsg):
+    async with async_session_maker() as session:
+        msg_dict = msg.dict()
+        cur_msg = change_message(msg_dict['msg'])
+        return {'message': cur_msg}
