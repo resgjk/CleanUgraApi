@@ -47,8 +47,8 @@ async def get_all_news():
         return {'news': news.scalars().all()}
 
 @router.post('/message/')
-async def send_msg(msg: ReceiveMsg):
+async def send_msg(message: ReceiveMsg):
     async with async_session_maker() as session:
-        msg_dict = msg.dict()
-        cur_msg = change_message(msg_dict['msg'])
+        msg_dict = message.dict()
+        cur_msg = change_message(msg_dict['message'])
         return {'message': cur_msg}
