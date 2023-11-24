@@ -9,6 +9,7 @@ class ShortPoint(BaseModel):
     title: str
     coord_x: str
     coord_y: str
+    address: str
     category: int
     img: str | None = None
 

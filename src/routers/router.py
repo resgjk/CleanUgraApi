@@ -1,5 +1,6 @@
 from sqlalchemy import insert, delete, select, and_, desc
 from fastapi import APIRouter
+from typing import List
 
 from src.db.database import async_session_maker
 from src.models.categories import CategoryModel
@@ -18,7 +19,7 @@ async def get_categories():
         res = await session.execute(categories)
         return {'categories': res.scalars().all()}
 
-@router.get('/reception/categories/{title}', response_model=list[ShortPoint])
+@router.get('/reception/categories/{title}')
 async def get_receptions_by_category_title(title: str):
     async with async_session_maker() as session:
         query = select(
@@ -29,7 +30,7 @@ async def get_receptions_by_category_title(title: str):
         return points.scalars().all()
 
 @router.get('/reception/{title}')
-async def get_reception_by_title(title: str):
+async def get_reception_by_title(title: str) -> List[ShortPoint]:
     async with async_session_maker() as session:
         query = select(ReceptionPointModel).where(
             ReceptionPointModel.title == title
