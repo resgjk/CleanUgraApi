@@ -21,7 +21,7 @@ async def get_categories():
         return {'categories': res.scalars().all()}
 
 @router.get('/reception/categories/{title}')
-async def get_receptions_by_category_title(title: str) -> List[ShortPoint]:
+async def get_receptions_by_category_title(title: str):
     async with async_session_maker() as session:
         query = select(
             ReceptionPointModel).where(
